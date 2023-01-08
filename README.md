@@ -9,11 +9,13 @@ Repository for abstract and code related to a talk.
 **Session Material**: slides, example code  
 
 ## Abstract
-I have been building restful interfaces in C++ using nlohmann::json and cpp-httplib for the past three years. Learn the basics of these two libraries with the pros and cons we have found from implementing our platform with them. Get the basics of how Restful APIs like Stripe are created. Understand how using and converting to strong types and using proper design patterns will make your life easier in the future. Further, share in the experience gained from implementing them in credit card transaction systems with Mastercard/Visa. See how you can use JSON and/or HTTP to interface with almost anything. 
+In this talk I provide my experience on the last three years of building restful interfaces in C++ using nlohmann::json and cpp-httplib. I will present a case study showing you the basics of how each of these header only libraries work, teasing out the pros and cons for our companies needs. Some insights into how Restful APIs like Stripe are created will be provided, and we’ll look at how using, and converting to strong types using proper design patterns can make your life easier if you go down the same route. Throughout the talk, I’ll specifically share in the experience gained from implementing RESTful APIs in credit card transaction systems with Mastercard/Visa. Join this session to learn how you can use JSON and/or HTTP to interface with almost anything. 
 
 ## Outline
 Overview 
-- REST APIs 
+- REST APIs
+    - What is a basic REST API
+    - Example of a Simple REST API call.
 - JSON 
 - HTTP 
 
@@ -27,7 +29,6 @@ Background:
 
 Approach: 
 - Overview of the design and patterns we used. 
-- Sprinkle in the best practices with REST and lessons learned overall. 
 - Start with the basic HTTP Server 
     - Add in endpoints 
         - GETS and POSTS most know, but what about PUT, DELETE… 
@@ -45,6 +46,7 @@ Approach:
     - Testing our own service. 
 - Bridging between the client and the server. 
     - Consuming one service, transform, provide for our own services. 
+- Best practices with REST and lessons learned overall. 
 
 Findings: 
 - Ease of integration. 
