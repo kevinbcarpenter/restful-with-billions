@@ -36,7 +36,7 @@ Approach:
 - Toss in some security 
     - IP blocking 
     - Rate limiting 
-    - Consistency with error reporting. 
+    - Consistency with error reporting.
 - Create the data structures and public facing API 
     - Considering high level interface vs lower-level data handling. 
 - Converting types 
@@ -66,3 +66,15 @@ Time permitting…
 A variation of this was given in 2018 when we focused on using ZeroMQ for our internal systems. It was about using ZeroMQ for socket communications in our framework with JSON. Here I will focus more on JSON/HTTP integrating with any RESTFUL service, with our experience on the customer application side. 
 
 [Scaling Financial Transactions using 0MQ and JSON](https://www.youtube.com/watch?v=XLSckGMyzbs&t=2s) - CppCon 2018
+
+### References
+[jwt-cpp](https://github.com/Thalhammer/jwt-cpp)
+[nlohmann::json](https://github.com/nlohmann/json)
+[cpp-httplib](https://github.com/yhirose/cpp-httplib)
+
+[Fielding Dissertation](https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf)
+[RESTful API Tutorial](https://restfulapi.net)
+[JWT](https://jwt.io/introduction/)
+
+### Source
+- Requires OpenSSL

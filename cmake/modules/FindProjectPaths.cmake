@@ -1,0 +1,1 @@
+set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/src)

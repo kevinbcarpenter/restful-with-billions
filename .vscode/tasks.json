@@ -1,0 +1,116 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "cmake-clean (Remove CMakeCache.txt)",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"command": "rm",
+			"args": [
+				"${workspaceRoot}/build/CMakeCache.txt"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "cmake-gen-gcc-debug",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"command": "cmake",
+			"args": [
+				"-H..",
+				"-B.",
+				"-DCMAKE_BUILD_TYPE=Debug",
+				"-DCMAKE_TOOLCHAIN_FILE=${workspaceRoot}/cmake/toolchain-gcc.cmake",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "cmake-gen-gcc-release",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"command": "cmake",
+			"args": [
+				"-H..",
+				"-B.",
+				"-DCMAKE_BUILD_TYPE=Release",
+				"-DCMAKE_TOOLCHAIN_FILE=${workspaceRoot}/cmake/toolchain-gcc.cmake",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "cmake-gen-clang-debug",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"command": "cmake",
+			"args": [
+				"-H..",
+				"-B.",
+				"-DCMAKE_BUILD_TYPE=Debug",
+				"-DCMAKE_TOOLCHAIN_FILE=${workspaceRoot}/cmake/toolchain-clang.cmake",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "cmake-gen-clang-release",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"command": "cmake",
+			"args": [
+				"-H..",
+				"-B.",
+				"-DCMAKE_BUILD_TYPE=Release",
+				"-DCMAKE_TOOLCHAIN_FILE=${workspaceRoot}/cmake/toolchain-clang.cmake",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "cmake-build",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"command": "cmake",
+			"args": [
+				"--build",
+				".",
+				"--",
+				"-j8"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "cmake-build-clean",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"command": "cmake",
+			"args": [
+				"--build",
+				".",
+				"--clean-first",
+				"--",
+				"-j8"
+			],
+			"problemMatcher": []
+		}
+	]
+}
