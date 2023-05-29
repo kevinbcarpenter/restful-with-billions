@@ -14,6 +14,7 @@ target_compile_options(${TargetName} PRIVATE
 
 target_include_directories(${TargetName} PRIVATE
     ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include/thirdparty
 )
 
 target_link_libraries(${TargetName} PRIVATE

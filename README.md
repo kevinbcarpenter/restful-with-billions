@@ -66,6 +66,7 @@ Time permitting…
 A variation of this was given in 2018 when we focused on using ZeroMQ for our internal systems. It was about using ZeroMQ for socket communications in our framework with JSON. Here I will focus more on JSON/HTTP integrating with any RESTFUL service, with our experience on the customer application side. 
 
 [Scaling Financial Transactions using 0MQ and JSON](https://www.youtube.com/watch?v=XLSckGMyzbs&t=2s) - CppCon 2018
+[jz18sub GitHub](https://github.com/kevinbcarpenter/jz18sub)
 
 ### References
 [jwt-cpp](https://github.com/Thalhammer/jwt-cpp)

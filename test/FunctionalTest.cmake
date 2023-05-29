@@ -9,6 +9,7 @@ add_executable(${FunctionaTestTargetName}
 
 target_include_directories(${FunctionaTestTargetName} PRIVATE
     ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include/thirdparty
 )
 
 target_link_libraries(${FunctionaTestTargetName} PRIVATE
