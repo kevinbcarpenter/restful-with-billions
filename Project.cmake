@@ -20,3 +20,5 @@ target_link_libraries(${TargetName} PRIVATE
     ${CMAKE_THREAD_LIBS_INIT}
     dl
 )
+
+add_subdirectory(test)
