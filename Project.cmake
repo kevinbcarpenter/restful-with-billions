@@ -14,12 +14,12 @@ target_compile_options(${TargetName} PRIVATE
 
 target_include_directories(${TargetName} PRIVATE
     ${PROJECT_SOURCE_DIR}/include
-    /opt/homebrew/opt/openssl@3/include
+    #/opt/homebrew/opt/openssl@3/include
 )
 
 target_link_libraries(${TargetName} PRIVATE
     ${CMAKE_THREAD_LIBS_INIT}
-    /opt/homebrew/opt/openssl@3/lib/libssl.a
+    #/opt/homebrew/opt/openssl@3/lib/libssl.a
     dl
     -static-libstdc++
 )
