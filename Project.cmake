@@ -5,11 +5,16 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
 add_executable(${TargetName}
-    src/server.cpp
+    src/restful.cpp
+
+    ${PROJECT_SOURCE_DIR}/include/App.cpp
+    ${PROJECT_SOURCE_DIR}/include/Logger.cpp
+    ${PROJECT_SOURCE_DIR}/include/StringUtils.cpp
 )
 
 target_compile_options(${TargetName} PRIVATE
     "-D_GLIBCXX_USE_CXX11_ABI=0"
+    "-DNO_ZMQ_SUPPORT"
 )
 
 target_include_directories(${TargetName} PRIVATE
