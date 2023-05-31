@@ -4,7 +4,9 @@
 #include <Logger.h>
 
 #include <exception>
+#include <iostream>
 #include <memory>
+#include <sstream>
 #include <string>
 #include <thread>
 
@@ -12,7 +14,7 @@ namespace {
 const std::string VERSION{"1.0.0"};
 const std::string APP_NAME{"restful"};
 
-auto logInfo(const std::string &func) { return "Restufl: " + func; }
+auto logInfo(const std::string &func) { return "Restful: " + func; }
 
 } // namespace
 
@@ -25,11 +27,11 @@ Restful::Restful(std::string appName) : App(appName) {
 void Restful::start() {
   http::host host;
   host.setup(App::getConfig().at("httpServer"));
-
-  std::cout << "Starting server on " << host.ip << ":" << host.port
-            << std::endl;
-
+  std::ostringstream os;
+  os << "Starting server on " << host.ip << ":" << host.port << std::endl;
   std::thread(&http::listener::run, std::move(host)).detach();
+  Logger::getLogger()->save(::logInfo(static_cast<const char *>(__func__)),
+                            "Starting server..", IS_MAIN);
 }
 
 //---------------------------------------------------------------------------

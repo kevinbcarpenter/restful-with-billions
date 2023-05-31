@@ -5,8 +5,10 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
 add_executable(${TargetName}
-    src/restful.cpp
-    src/http/listener.cpp
+    ${SOURCE_DIR}/restful.cpp
+    ${SOURCE_DIR}/api/sale.cpp
+    ${SOURCE_DIR}/http/handler.cpp
+    ${SOURCE_DIR}/http/listener.cpp
 
     ${PROJECT_SOURCE_DIR}/include/App.cpp
     ${PROJECT_SOURCE_DIR}/include/Logger.cpp
@@ -19,6 +21,10 @@ target_compile_options(${TargetName} PRIVATE
 )
 
 target_include_directories(${TargetName} PRIVATE
+    ${SOURCE_DIR}
+    ${SOURCE_DIR}/api
+    ${SOURCE_DIR}/http
+
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/include/thirdparty
 )
