@@ -7,6 +7,7 @@ find_package(Threads REQUIRED)
 add_executable(${TargetName}
     ${SOURCE_DIR}/restful.cpp
     ${SOURCE_DIR}/api/sale.cpp
+    ${SOURCE_DIR}/detail/creditcard.cpp
     ${SOURCE_DIR}/http/handler.cpp
     ${SOURCE_DIR}/http/listener.cpp
 

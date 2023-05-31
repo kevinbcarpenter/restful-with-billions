@@ -5,5 +5,5 @@
 #include <httplib.h>
 
 namespace http::handler {
-void setup(httplib::Server srv, const host &host);
+void setup(httplib::Server &srv, const host &host);
 }

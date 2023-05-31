@@ -8,6 +8,6 @@ using json = nlohmann::json;
 
 namespace api::sale {
 
-auto auth(const httplib::Request &req, httplib::Response /*&res*/) -> json;
+void auth(const httplib::Request &req, httplib::Response &res);
 
 }

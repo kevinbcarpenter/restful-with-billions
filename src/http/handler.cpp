@@ -9,6 +9,7 @@
 #include <httplib.h>
 
 namespace http::handler {
+auto logline(const std::string &function) { return "listener::" + function; }
 
 //---------------------------------------------------------------------------
 void security(httplib::Server &server, const host &host) {
