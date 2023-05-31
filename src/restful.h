@@ -7,15 +7,12 @@
 
 class Restful : public App {
 private:
-  void doIdle();
-
-  void setup(const json &config) override;
-
+  void setup(const json &configuration) override;
   void start();
-
-  void run() override;
+  void idle();
 
 public:
   Restful(std::string appName);
   ~Restful() = default;
+  void run() override;
 };

@@ -1,0 +1,13 @@
+{
+    "dumps": {
+        "on": true,
+        "location": "dumps"
+    },
+    "logs": {
+        "location": "logs"
+    },
+    "httpServer": {
+        "ip": "0.0.0.0",
+        "port": 8080
+    }
+}

@@ -18,15 +18,11 @@
 #include <unistd.h>
 #include <vector>
 
-
 using namespace std;
 
 #include "App.h"
 #include "Logger.h"
 #include "StringUtils.h"
-
-#pragma mark -
-#pragma mark Crashing/Interrupts
 
 namespace {
 void saveStackTrace(int fd) {
@@ -91,9 +87,6 @@ void App::dumpError(string error) {
   Logger::appError(error);
 }
 
-#pragma mark -
-#pragma mark Configuration
-
 //---------------------------------------------------------------------------
 json App::readConfiguration() {
   json jsonConfig;
@@ -154,9 +147,6 @@ void App::startConfigThread() {
   thread t = thread([this] { configThread(); });
   t.detach();
 }
-
-#pragma mark -
-#pragma mark Startup
 
 //---------------------------------------------------------------------------
 #ifndef NO_ZMQ_SUPPORT
