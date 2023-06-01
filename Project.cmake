@@ -6,7 +6,9 @@ find_package(Threads REQUIRED)
 
 add_executable(${TargetName}
     ${SOURCE_DIR}/restful.cpp
+    ${SOURCE_DIR}/utility.cpp
     ${SOURCE_DIR}/api/sale.cpp
+    ${SOURCE_DIR}/data/store.cpp
     ${SOURCE_DIR}/detail/creditcard.cpp
     ${SOURCE_DIR}/http/handler.cpp
     ${SOURCE_DIR}/http/listener.cpp
@@ -25,7 +27,6 @@ target_include_directories(${TargetName} PRIVATE
     ${SOURCE_DIR}
     ${SOURCE_DIR}/api
     ${SOURCE_DIR}/http
-
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/include/thirdparty
 )

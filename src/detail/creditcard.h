@@ -5,20 +5,14 @@
 
 using json = nlohmann::json;
 
-// {
-//   "account" : "4111111111111111",
-//   "expiration" : "0524",
-//   "amount" : 127.99,
-//   "batchID" : 444,
-//   "transaction" : 123
-// }
-
 namespace detail {
 
 struct cardInfo {
   std::string account{};
   std::string expiration{};
+  std::string guid{};
   double amount{0.0};
+  double tipAmount{0.0};
   uint batchId{0};
   uint transaction{0};
 };

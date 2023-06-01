@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch Restful",
+            "name": "Launch Restful",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/gcc/Debug/restful",

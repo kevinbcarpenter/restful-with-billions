@@ -66,27 +66,36 @@ Time permitting…
 A variation of this was given in 2018 when we focused on using ZeroMQ for our internal systems. It was about using ZeroMQ for socket communications in our framework with JSON. Here I will focus more on JSON/HTTP integrating with any RESTFUL service, with our experience on the customer application side. 
 
 [Scaling Financial Transactions using 0MQ and JSON](https://www.youtube.com/watch?v=XLSckGMyzbs&t=2s) - CppCon 2018
+
 [jz18sub GitHub](https://github.com/kevinbcarpenter/jz18sub)
 
 ### References
 [jwt-cpp](https://github.com/Thalhammer/jwt-cpp)
+
 [nlohmann::json](https://github.com/nlohmann/json)
+
 [cpp-httplib](https://github.com/yhirose/cpp-httplib)
 
+
 [Fielding Dissertation](https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf)
+
 [RESTful API Tutorial](https://restfulapi.net)
+
 [JWT](https://jwt.io/introduction/)
 
 #### cpp-httplib links
 [reddit](https://www.reddit.com/r/cpp/comments/igfn33/is_cpphttplib_the_simplesthighestperformance_way/)
+
 [REST-CPP-benchmark](https://github.com/guteksan/REST-CPP-benchmark)
+
 [Alterntives Libhunt](https://cpp.libhunt.com/cpp-httplib-alternatives)
 
 #### nlohmann links
 [reddit](https://www.reddit.com/r/cpp/comments/dhy3mx/recent_json_library_benchmarks/)
-[nativejson-benchmark](https://github.com/miloyip/nativejson-benchmark)
-[Boost Comparisons](https://www.boost.org/doc/libs/master/libs/json/doc/html/json/comparison.html)
 
+[nativejson-benchmark](https://github.com/miloyip/nativejson-benchmark)
+
+[Boost Comparisons](https://www.boost.org/doc/libs/master/libs/json/doc/html/json/comparison.html)
 
 
 ### Source
@@ -95,7 +104,9 @@ A variation of this was given in 2018 when we focused on using ZeroMQ for our in
 
 ### Of Interest...
 [nanobench](https://github.com/martinus/nanobench)
+
 [nanobench website](https://nanobench.ankerl.com/index.html)
+
 [lithium](https://github.com/matt-42/lithium)
 
 [Modern cMake](https://cliutils.gitlab.io/modern-cmake/)
