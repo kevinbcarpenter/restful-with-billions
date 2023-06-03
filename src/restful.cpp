@@ -14,7 +14,7 @@ namespace {
 const std::string VERSION{"1.0.0"};
 const std::string APP_NAME{"restful"};
 
-auto logInfo(const std::string &func) { return "Restful: " + func; }
+auto logline(const std::string &func) { return "Restful: " + func; }
 
 } // namespace
 
@@ -30,13 +30,13 @@ void Restful::start() {
   std::ostringstream os;
   os << "Starting server on " << host.ip << ":" << host.port << std::endl;
   std::thread(&http::listener::run, std::move(host)).detach();
-  Logger::getLogger()->save(::logInfo(static_cast<const char *>(__func__)),
-                            "Starting server..", IS_MAIN);
+  Logger::getLogger()->save(::logline(static_cast<const char *>(__func__)),
+                            "Starting server " + VERSION + "....", IS_MAIN);
 }
 
 //---------------------------------------------------------------------------
 void Restful::idle() {
-  const auto fname = ::logInfo(static_cast<const char *>(__func__));
+  const auto fname = ::logline(static_cast<const char *>(__func__));
   constexpr int idleTime = 5;
   while (true) {
     std::this_thread::sleep_for(std::chrono::seconds(idleTime));
@@ -61,7 +61,7 @@ void Restful::run() {
 }
 
 //---------------------------------------------------------------------------
-int main(int argc, char *argv[]) {
+auto main(int argc, char *argv[]) -> int {
   App::main(argc, argv, VERSION, new Restful(APP_NAME));
   return 0;
 }

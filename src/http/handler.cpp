@@ -9,7 +9,7 @@
 #include <httplib.h>
 
 namespace http::handler {
-auto logline(const std::string &function) { return "listener::" + function; }
+auto logline(const std::string &function) { return "handler::" + function; }
 
 //---------------------------------------------------------------------------
 void security(httplib::Server &server, const host &host) {
@@ -60,6 +60,10 @@ void routing(httplib::Server &server) {
              [=](const httplib::Request &req, httplib::Response &res) -> void {
                api::sale::list(req, res);
              });
+  server.Delete(R"(^/sale/void/(\w+)$)",
+                [=](const httplib::Request &req, httplib::Response &res) {
+                  api::sale::reverse(req, res);
+                });
 }
 
 //---------------------------------------------------------------------------

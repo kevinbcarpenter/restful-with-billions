@@ -76,4 +76,28 @@ void list(const httplib::Request &req, httplib::Response &res) {
   res.set_content(result.dump(), contentType);
 }
 
+//---------------------------------------------------------------------------
+void reverse(const httplib::Request &req, httplib::Response &res) {
+  const auto fName = logline(static_cast<const char *>(__func__));
+  Logger *log = Logger::getLogger();
+  json result{};
+
+  // detail::cardInfo uci = json::parse(req.body);
+  auto guid = req.matches[1];
+  auto sci = data::store::get(guid);
+
+  if (sci.has_value()) {
+    data::store::remove(guid);
+
+    log->save(fName, "Reversed/Removed Sale", IS_THREAD, req.id());
+    res.status = http::code::OK;
+    json result = sci.value();
+  } else {
+    log->warn(fName, "Transaction not found to reverse.", IS_THREAD, req.id());
+    res.status = http::code::InternalServerError;
+  }
+
+  res.set_content(result.dump(), contentType);
+};
+
 } // namespace api::sale
