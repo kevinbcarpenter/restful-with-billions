@@ -45,16 +45,18 @@ void inc(const httplib::Request &req, httplib::Response &res) {
   auto sci = data::store::get(guid);
 
   if (sci.has_value()) {
+    detail::cardInfo nci = sci.value();
     if (uci.amount != (uci.tipAmount + sci->amount)) {
       log->warn(fName, "New amount with tip does not equal differs.", IS_THREAD,
                 req.id());
     }
-    sci->tipAmount = uci.tipAmount;
-    sci->amount = uci.amount;
+    nci.tipAmount = uci.tipAmount;
+    nci.amount = uci.amount;
+    data::store::save(sci->guid, nci);
 
     log->save(fName, "Incremented Sale", IS_THREAD, req.id());
     res.status = http::code::OK;
-    json result = sci.value();
+    json result = nci;
   } else {
     log->warn(fName, "Transaction not found.", IS_THREAD, req.id());
     res.status = http::code::InternalServerError;

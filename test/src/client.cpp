@@ -1,6 +1,7 @@
 #include <httplib.h>
 #include <iostream>
 #include <sstream>
+#include <thread>
 
 #include "detail/creditcard.h"
 
@@ -8,8 +9,10 @@
 
 using json = nlohmann::json;
 
-constexpr auto contentType = "application/json";
 constexpr auto TESTCOUNT = 5;
+constexpr auto DELAY = 1;
+constexpr auto TIP_PCT = .2;
+constexpr auto contentType = "application/json";
 
 //---------------------------------------------------------------------------
 auto testPost(httplib::Client &cli, detail::cardInfo &ci) -> detail::cardInfo {
@@ -17,16 +20,16 @@ auto testPost(httplib::Client &cli, detail::cardInfo &ci) -> detail::cardInfo {
   auto res = cli.Post("/sale", payload.dump(), contentType);
 
   detail::cardInfo rci = json::parse(res->body)[0];
-  std::cout << "Status: " << res->status << std::endl;
-  std::cout << "Guid: " << rci.guid << std::endl;
-  std::cout << "Body: " << res->body << std::endl;
+  std::cout << "POST/CREATE - Status: " << res->status << std::endl
+            << "Guid: " << rci.guid << std::endl
+            << "Body: " << res->body << std::endl;
 
   return rci;
 }
 
 //---------------------------------------------------------------------------
 void testPut(httplib::Client &cli, detail::cardInfo &ci) {
-  ci.tipAmount = ci.amount * .20;
+  ci.tipAmount = ci.amount * TIP_PCT;
   ci.amount += ci.tipAmount;
   json payload = ci;
 
@@ -35,18 +38,18 @@ void testPut(httplib::Client &cli, detail::cardInfo &ci) {
 
   auto res = cli.Put(putPath.str(), payload.dump(), contentType);
 
-  std::cout << "Status: " << res->status << std::endl;
-  std::cout << "Body: " << res->body << std::endl;
+  std::cout << "PUT/UPDATE - Status: " << res->status << std::endl;
 }
 
 //---------------------------------------------------------------------------
 auto testGet(httplib::Client &cli) -> std::vector<detail::cardInfo> {
   std::cout << "RESULT from GET" << std::endl;
   auto res = cli.Get("/sale");
-  // std::cout << "Status: " << res->status << std::endl;
-  // std::cout << "Body: " << res->body << std::endl;
-  auto trans = json::parse(res->body);
 
+  std::cout << "GET/LIST - Status: " << res->status << std::endl
+            << "Body: " << res->body << std::endl;
+
+  auto trans = json::parse(res->body);
   return trans;
 }
 
@@ -56,23 +59,27 @@ auto testRemove(httplib::Client &cli, std::string guid) {
   delPath << "/sale/void/" << guid;
 
   auto res = cli.Delete(delPath.str());
+  std::cout << "DELETE/DELETE - Status: " << res->status << std::endl;
 
   return res;
 }
 
 //---------------------------------------------------------------------------
 auto main(int /* argc*/, char ** /*argv[]*/) -> int {
+  uint idleTime = DELAY;
   httplib::Client cli("http://127.0.0.1:8080");
 
   for (int i = 0; i < TESTCOUNT; ++i) {
     detail::cardInfo c1{"4111111111111111", "0524", 125.00, 0, 1, 1, ""};
     auto c2 = testPost(cli, c1);
     testPut(cli, c2);
+    std::this_thread::sleep_for(std::chrono::seconds(idleTime));
   }
 
   auto sales = testGet(cli);
   for (auto s : sales) {
     auto d1 = testRemove(cli, s.guid);
+    std::this_thread::sleep_for(std::chrono::seconds(idleTime));
   }
 
   return 0;

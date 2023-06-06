@@ -1,8 +1,6 @@
 #pragma once
 #include <App.h>
-#include <future>
 
-#include <httplib.h>
 #include <json.hpp>
 
 class Restful : public App {
@@ -13,6 +11,6 @@ private:
 
 public:
   Restful(std::string appName);
-  ~Restful() = default;
+  ~Restful() final = default;
   void run() override;
 };

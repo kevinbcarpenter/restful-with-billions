@@ -49,19 +49,19 @@ void errors(httplib::Server &server) {
 //---------------------------------------------------------------------------
 void routing(httplib::Server &server) {
   server.Post("/sale",
-              [=](const httplib::Request &req, httplib::Response &res) {
+              [](const httplib::Request &req, httplib::Response &res) {
                 api::sale::auth(req, res);
               });
   server.Put(R"(^/sale/inc/(\w+)$)",
-             [=](const httplib::Request &req, httplib::Response &res) {
+             [](const httplib::Request &req, httplib::Response &res) {
                api::sale::inc(req, res);
              });
   server.Get("/sale",
-             [=](const httplib::Request &req, httplib::Response &res) -> void {
+             [](const httplib::Request &req, httplib::Response &res) -> void {
                api::sale::list(req, res);
              });
   server.Delete(R"(^/sale/void/(\w+)$)",
-                [=](const httplib::Request &req, httplib::Response &res) {
+                [](const httplib::Request &req, httplib::Response &res) {
                   api::sale::reverse(req, res);
                 });
 }

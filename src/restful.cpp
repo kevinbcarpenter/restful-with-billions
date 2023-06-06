@@ -11,7 +11,7 @@
 #include <thread>
 
 namespace {
-const std::string VERSION{"1.0.0"};
+const std::string VERSION{"0.41"};
 const std::string APP_NAME{"restful"};
 
 auto logline(const std::string &func) { return "Restful: " + func; }
@@ -25,13 +25,18 @@ Restful::Restful(std::string appName) : App(appName) {
 
 //---------------------------------------------------------------------------
 void Restful::start() {
+  const auto fname = ::logline(static_cast<const char *>(__func__));
+
   http::host host;
   host.setup(App::getConfig().at("httpServer"));
+
   std::ostringstream os;
-  os << "Starting server on " << host.ip << ":" << host.port << std::endl;
+  os << "Starting server v" << VERSION << " on " << host.ip << ":" << host.port
+     << std::endl;
+
   std::thread(&http::listener::run, std::move(host)).detach();
-  Logger::getLogger()->save(::logline(static_cast<const char *>(__func__)),
-                            "Starting server " + VERSION + "....", IS_MAIN);
+
+  Logger::getLogger()->save(fname, os.str(), IS_MAIN);
 }
 
 //---------------------------------------------------------------------------
