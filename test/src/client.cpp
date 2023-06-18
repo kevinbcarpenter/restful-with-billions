@@ -54,7 +54,7 @@ auto testGet(httplib::Client &cli) -> std::vector<detail::cardInfo> {
 }
 
 //---------------------------------------------------------------------------
-auto testRemove(httplib::Client &cli, std::string guid) {
+auto testRemove(httplib::Client &cli, const std::string &guid) {
   std::stringstream delPath{};
   delPath << "/sale/void/" << guid;
 

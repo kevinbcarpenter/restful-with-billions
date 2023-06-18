@@ -1,5 +1,5 @@
 # Being RESTful with billions of dollars in transactions, thanks to C++, JSON and HTTP. 
-Repository for abstract and code related to a talk.
+Repository for abstract and code related to a talk.  
 
 ## Submission Details
 **Tags**: finance, JSON, HTTP, cpp17, cpp20  
@@ -7,6 +7,13 @@ Repository for abstract and code related to a talk.
 **Level**: Beginning to Intermediate  
 **Audience**: application developers, library authors 
 **Session Material**: slides, example code  
+
+[Slides](doc/Being_RESTful_with_Billions.pdf)
+[Source](https://github.com/kevinbcarpenter/restful-with-billions)
+
+## Delivered
+**Core C++** June 6th, 2023
+**CppOnSea** June 30th, 2023 (scheduled)
 
 ## Abstract
 In this talk I provide my experience on the last three years of building restful interfaces in C++ using nlohmann::json and cpp-httplib. I will present a case study showing you the basics of how each of these header only libraries work, teasing out the pros and cons for our companies needs. Some insights into how Restful APIs like Stripe are created will be provided, and we’ll look at how using, and converting to strong types using proper design patterns can make your life easier if you go down the same route. Throughout the talk, I’ll specifically share in the experience gained from implementing RESTful APIs in credit card transaction systems with Mastercard/Visa. Join this session to learn how you can use JSON and/or HTTP to interface with almost anything. 
