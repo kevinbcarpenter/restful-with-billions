@@ -1,0 +1,17 @@
+{
+    "dumps": {
+        "on": true,
+        "location": "dumps"
+    },
+    "logs": {
+        "location": "logs"
+    },
+    "httpServer": {
+        "ip": "0.0.0.0",
+        "port": 8080,
+        "bannedIps": [
+            "192.168.7.2",
+            "192.178.7.4"
+        ]
+    }
+}
