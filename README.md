@@ -8,7 +8,7 @@ Repository for abstract and code related to a talk.
 **Audience**: application developers, library authors 
 **Session Material**: slides, example code  
 
-[Slides](doc/Being_RESTful_with_Billions.pdf)
+[Slides](doc/Being_RESTful_with_Billions.pdf)<br />
 [Source](https://github.com/kevinbcarpenter/restful-with-billions)
 
 ## Delivered

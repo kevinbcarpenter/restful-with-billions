@@ -19,7 +19,7 @@ auto logline(const std::string &func) { return "Restful: " + func; }
 } // namespace
 
 //---------------------------------------------------------------------------
-Restful::Restful(std::string appName) : App(appName) {
+Restful::Restful(std::string appName) : App(std::move(appName)) {
   // nothing for now.
 }
 
@@ -52,7 +52,11 @@ void Restful::idle() {
 //---------------------------------------------------------------------------
 void Restful::setup(const json &configuration) {
   try {
-    auto jsconfig = configuration;
+    const auto &jsconfig = configuration;
+    if (jsconfig.empty()) {
+      std::cout << "Failure during config: empty configuration file."
+                << std::endl;
+    }
   } catch (const std::exception &ex) {
     std::cout << "Failure during config: " << ex.what() << std::endl;
   }
