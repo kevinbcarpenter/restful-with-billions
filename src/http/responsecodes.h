@@ -11,4 +11,4 @@ enum code {
   InternalServerError = 500,
   NotImplemented = 501,
 };
-}
+} // namespace http

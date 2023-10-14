@@ -6,4 +6,4 @@
 
 namespace http::listener {
 void run(host host);
-}
+} // namespace http::listener
