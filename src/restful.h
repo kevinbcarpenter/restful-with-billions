@@ -3,7 +3,7 @@
 
 #include <json.hpp>
 
-class Restful : public App {
+class Restful final : public App {
 private:
   void setup(const json &configuration) override;
   void start();
