@@ -17,14 +17,17 @@ constexpr auto contentType = "application/json";
 //---------------------------------------------------------------------------
 auto testPost(httplib::Client &cli, detail::cardInfo &ci) -> detail::cardInfo {
   json payload = ci;
-  auto res = cli.Post("/sale", payload.dump(), contentType);
+  if (auto res = cli.Post("/sale", payload.dump(), contentType)) {
+    detail::cardInfo rci = json::parse(res->body)[0];
+    std::cout << "POST/CREATE - Status: " << res->status << std::endl
+              << "Guid: " << rci.guid << std::endl
+              << "Body: " << res->body << std::endl;
 
-  detail::cardInfo rci = json::parse(res->body)[0];
-  std::cout << "POST/CREATE - Status: " << res->status << std::endl
-            << "Guid: " << rci.guid << std::endl
-            << "Body: " << res->body << std::endl;
-
-  return rci;
+    return rci;
+  } else {
+    std::cerr << "error: httpclient: testPost: " << res.error() << '\n';
+    return {};
+  }
 }
 
 //---------------------------------------------------------------------------
@@ -36,21 +39,25 @@ void testPut(httplib::Client &cli, detail::cardInfo &ci) {
   std::stringstream putPath{};
   putPath << "/sale/inc/" << ci.guid;
 
-  auto res = cli.Put(putPath.str(), payload.dump(), contentType);
-
-  std::cout << "PUT/UPDATE - Status: " << res->status << std::endl;
+  if (auto res = cli.Put(putPath.str(), payload.dump(), contentType)) {
+    std::cout << "PUT/UPDATE - Status: " << res->status << std::endl;
+  } else {
+    std::cerr << "error: httpclient: testPut: " << res.error() << '\n';
+  }
 }
 
 //---------------------------------------------------------------------------
 auto testGet(httplib::Client &cli) -> std::vector<detail::cardInfo> {
-  std::cout << "RESULT from GET" << std::endl;
-  auto res = cli.Get("/sale");
-
-  std::cout << "GET/LIST - Status: " << res->status << std::endl
-            << "Body: " << res->body << std::endl;
-
-  auto trans = json::parse(res->body);
-  return trans;
+  if (auto res = cli.Get("/sale")) {
+    std::cout << "RESULT from GET" << std::endl;
+    std::cout << "GET/LIST - Status: " << res->status << std::endl
+              << "Body: " << res->body << std::endl;
+    auto trans = json::parse(res->body);
+    return trans;
+  } else {
+    std::cerr << "error: httpclient: testGet: " << res.error() << '\n';
+    return {};
+  }
 }
 
 //---------------------------------------------------------------------------
@@ -58,10 +65,14 @@ auto testRemove(httplib::Client &cli, const std::string &guid) {
   std::stringstream delPath{};
   delPath << "/sale/void/" << guid;
 
-  auto res = cli.Delete(delPath.str());
-  std::cout << "DELETE/DELETE - Status: " << res->status << std::endl;
+  if (auto res = cli.Delete(delPath.str())) {
+    std::cout << "DELETE/DELETE - Status: " << res->status << std::endl;
+    return res;
 
-  return res;
+  } else {
+    std::cerr << "error: httpclient: testRemove: " << res.error() << '\n';
+    return res;
+  }
 }
 
 //---------------------------------------------------------------------------
